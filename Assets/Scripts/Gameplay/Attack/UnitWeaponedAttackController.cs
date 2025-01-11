@@ -10,7 +10,7 @@ public class UnitWeaponedAttackController : UnitAttackController
     private WeaponData weaponData;
     private Weapon weapon;
 
-
+    // Called from UnityEvent
     public void EquipWeapon(WeaponData weaponData)
     {
         if (this.weaponData == weaponData)

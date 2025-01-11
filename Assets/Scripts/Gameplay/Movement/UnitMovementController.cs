@@ -17,7 +17,6 @@ public class UnitMovementController : MonoBehaviour
 
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float minimumSqrMagnitudeToMove = 0.01f;
-    [SerializeField] private Animator animator;
     [SerializeField] private UnitStatsController unitStatsController;
 
     private Vector3 desiredMovement;

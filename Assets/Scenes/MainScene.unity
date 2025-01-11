@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0569a7b0d9c571b4d80743171f854b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 5
+  spawnRate: 2
   enemyFactory: {fileID: 11400000, guid: ec16eeef302b57341ad331ddbf33a4d5, type: 2}
   bounds:
     m_Center: {x: 0, y: 0, z: 0}

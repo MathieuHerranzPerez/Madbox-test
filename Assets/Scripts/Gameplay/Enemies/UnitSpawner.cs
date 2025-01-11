@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] private float spawnRate = 5f;
 
