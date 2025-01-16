@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            unitWeaponedAttackController.SetCanAttack(true);
             if (!unitTargeter.HasTarget)
             {
                 unitTargeter.TryToTarget(playerData.RangeAutoTarget, out Unit _);
@@ -49,9 +48,20 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 targetDirection = target.transform.position - transform.position;
                 unitMovementController.LookAt(targetDirection, Time.deltaTime);
+
+                unitWeaponedAttackController.SetCanAttack(IsTargetInRange(targetDirection));
+            }
+            else
+            {
+                unitWeaponedAttackController.SetCanAttack(false);
             }
         }
 
         unitMovementController.Move(desiredMovement, Time.deltaTime);
+    }
+
+    private bool IsTargetInRange(Vector3 targetDirection)
+    {
+        return unitWeaponedAttackController.Range * unitWeaponedAttackController.Range >= targetDirection.sqrMagnitude;
     }
 }

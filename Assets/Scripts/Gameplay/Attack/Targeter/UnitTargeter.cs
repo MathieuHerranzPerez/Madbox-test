@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class UnitTargeter : MonoBehaviour
 {
+    public event Action<Unit> OnTargetChanged;
+
     public bool HasTarget => target != null && target.IsAlive;
     public Unit Target => HasTarget ? target : null;
 
@@ -15,14 +18,29 @@ public class UnitTargeter : MonoBehaviour
 
     public bool TryToTarget(int range, out Unit unit)
     {
-        ResetTarget();
+        Unit previousTarget = target;
+
+        SetTargetToNull();
 
         bool result = unitTargeterStrategy.TryToTarget(transform, range, out target);
         unit = target;
+
+        if (previousTarget != target)
+            OnTargetChanged?.Invoke(target);
+
         return result;
     }
 
     public void ResetTarget()
+    {
+        Unit previousTarget = target;
+        SetTargetToNull();
+
+        if (previousTarget != target)
+            OnTargetChanged?.Invoke(target);
+    }
+
+    private void SetTargetToNull()
     {
         target = null;
     }

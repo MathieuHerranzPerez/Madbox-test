@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem hitFxPrefab;
+
+    private ParticleSystem hitFx;
+
     public void LaunchAttack()
     {
         // TODO Fx
@@ -27,5 +31,14 @@ public class Weapon : MonoBehaviour
         // TODO can raycast to check visibility (walls...)
 
         target.DealDamage(attackDamage);
+
+        if (hitFx == null)
+        {
+            hitFx = Instantiate(hitFxPrefab);
+        }
+        hitFx.transform.position = target.transform.position + new Vector3(0, 1, 0);
+        hitFx.Play();
+
+        CameraShaker.Instance.Shake(Mathf.Lerp(0, 1, attackDamage / 100f));
     }
 }

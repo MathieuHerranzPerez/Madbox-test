@@ -12,6 +12,7 @@ public class UnitMovementAnimator : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private float distanceRunnedByOneAnimationCycle = 3f;
     [SerializeField] private string animatorMoveClipName = "HeroMove";
+    [SerializeField] private ParticleSystem runningParticles;
 
     void OnEnable()
     {
@@ -35,16 +36,17 @@ public class UnitMovementAnimator : MonoBehaviour
     {
         animator.SetTrigger(animatorTriggerStartRunningName);
         animator.SetBool(animatorParamIsRunningName, true);
+        runningParticles.Play();
     }
 
     private void HandleRunning(Vector2 direction)
     {
-        // TODO footsteps FX
     }
 
     private void HandleStopRunning()
     {
         animator.SetBool(animatorParamIsRunningName, false);
+        runningParticles.Stop();
     }
 
     private void HandleSpeedChanged(float speed)

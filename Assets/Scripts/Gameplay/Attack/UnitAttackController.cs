@@ -4,6 +4,7 @@ using UnityEngine;
 public class UnitAttackController : MonoBehaviour
 {
     public event Action OnAttackLaunched;
+    public virtual float Range => unitStatsController.Range;
 
     [SerializeField] protected UnitStatsController unitStatsController;
 

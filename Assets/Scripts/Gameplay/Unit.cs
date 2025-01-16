@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour
     public bool IsAlive { get; private set; }
     public float Radius => unitCollider.radius;
     public int CurrentHealth => health.Current;
+    public int MaxHealth => health.Max;
 
 
     [SerializeField] private SphereCollider unitCollider;
